@@ -21,7 +21,12 @@ const sendNotification = async (bed, room, timestamp)=>{
         <p>Thank you</p>`
     }
 
-    await transporter.sendMail(mailOptions);
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('notification sent');
+    } catch (error) {
+        console.error('Error sending email:', error);
+    }
 }
 
 export default async function handler(req,res){
@@ -35,8 +40,8 @@ export default async function handler(req,res){
             bed: bed,
             room: room,
             timestamp: timestamp,
-            timeoutID: setTimeout(() => {
-                sendNotification(bed, room, timestamp);
+            timeoutID:setTimeout(async() => {
+                await sendNotification(bed, room, timestamp);
                 expiredTimers(id); 
                 res.status(200).json({message: 'Email was sent successfully'});
                 console.log('notification sent');
