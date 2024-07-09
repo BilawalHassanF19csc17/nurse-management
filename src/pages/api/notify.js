@@ -43,8 +43,7 @@ export default async function handler(req,res){
             timeoutID:setTimeout(async() => {
                 await sendNotification(bed, room, timestamp);
                 expiredTimers(id); 
-                console.log('notification sent');
-             }, 30*1000) 
+             }, 2*60*1000) 
         }
         
         addTimers(key);
