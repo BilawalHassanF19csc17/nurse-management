@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import { addTimers, expiredTimers } from '../../../lib/timers';
 
 const sendNotification = async (bed, room, timestamp)=>{
-    const emails = ['Iconnect1412@gmail.com','maryamashfaq986@gmail.com']
+    const emails = ['Iconnect1412@gmail.com','maryamashfaq986@gmail.com','']
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -14,7 +14,7 @@ const sendNotification = async (bed, room, timestamp)=>{
     //emails.join(',')
     const mailOptions = {
         from: 'medisyncalerthub@gmail.com',
-        to: 'iconnect1412@gmail.com',
+        to: emails,
         subject: `Patient alert: Bed ${bed}, Room ${room}`,
         html: `<h3>Unattended Alarm</h3><p>Dear Head of Nurse,</p>
         <p>For your kind information there was an unattended Alarm from <b>bed no.${bed}</b> from <b>room no.${room}</b> at <b>${timestamp}</b>. kindly look into this issue.</p>
